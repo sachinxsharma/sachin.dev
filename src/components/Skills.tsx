@@ -27,6 +27,7 @@ export default function Skills() {
   ];
 
   const currentlyLearning = [
+    "Terraform",
     "Advanced Service Mesh (Istio)",
     "GitOps with ArgoCD",
     "Prometheus & Grafana Observability"
@@ -84,12 +85,12 @@ export default function Skills() {
           id="learning"
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-neon-purple/10 rounded-full blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2" />
-          
+
           <h3 className="text-3xl font-bold mb-8 flex items-center gap-4">
             <Cpu className="text-neon-purple" size={36} />
             Currently Learning
           </h3>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {currentlyLearning.map((topic, i) => (
               <div key={i} className="bg-white/5 border border-white/10 p-5 rounded-xl border-l-4 border-l-neon-purple hover:bg-white/10 transition-colors">
