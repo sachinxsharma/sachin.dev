@@ -1,4 +1,4 @@
-const apiKey = "AIzaSyDOqnEwMJJcsjfNlvfN1vlEZbekg7WX-48"; // From your .env.local
+const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY; // From your .env.local
 
 async function test() {
   const url = `https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`;
