@@ -1,8 +1,36 @@
 "use client";
-import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, Mail, Send } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Github, Linkedin, Twitter, Mail, Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 
 export default function Contact() {
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [formData, setFormData] = useState({
+    subject: "",
+    body: ""
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.subject || !formData.body) return;
+
+    setStatus("loading");
+    
+    // Simulating API call - In a real scenario, you'd fetch to /api/contact or Formspree
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      // console.log("Form submitted:", formData);
+      setStatus("success");
+      setFormData({ subject: "", body: "" });
+      
+      setTimeout(() => setStatus("idle"), 5000);
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 5000);
+    }
+  };
+
   return (
     <section id="contact" className="py-20 relative z-10 bg-black/30">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
@@ -59,18 +87,61 @@ export default function Contact() {
             viewport={{ once: true }}
             className="flex-[1.5]"
           >
-            <form className="glass p-8 rounded-2xl flex flex-col gap-6" action="mailto:sahcin72tech@gmail.com" method="GET" encType="text/plain">
+            <form className="glass p-8 rounded-2xl flex flex-col gap-6" onSubmit={handleSubmit}>
               <div className="flex flex-col gap-2">
                 <label htmlFor="subject" className="text-sm text-gray-400">Subject</label>
-                <input type="text" id="subject" name="subject" className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all" placeholder="Project Opportunity" />
+                <input 
+                  type="text" 
+                  id="subject" 
+                  name="subject" 
+                  value={formData.subject}
+                  onChange={(e) => setFormData({...formData, subject: e.target.value})}
+                  required
+                  className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all" 
+                  placeholder="Project Opportunity" 
+                />
               </div>
               <div className="flex flex-col gap-2">
                 <label htmlFor="body" className="text-sm text-gray-400">Message</label>
-                <textarea id="body" name="body" rows={5} className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all" placeholder="How can I help you?"></textarea>
+                <textarea 
+                  id="body" 
+                  name="body" 
+                  rows={5} 
+                  value={formData.body}
+                  onChange={(e) => setFormData({...formData, body: e.target.value})}
+                  required
+                  className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all" 
+                  placeholder="How can I help you?"
+                ></textarea>
               </div>
-              <button type="submit" className="w-full py-4 bg-gradient-to-r from-neon-blue to-neon-purple text-white font-bold rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center gap-2 mt-2">
-                Send Message <Send size={18} />
+              
+              <button 
+                type="submit" 
+                disabled={status !== "idle"}
+                className={`w-full py-4 font-bold rounded-xl transition-all flex items-center justify-center gap-2 mt-2 ${
+                  status === "success" ? "bg-green-500/20 text-green-400 border border-green-500/50" : 
+                  status === "error" ? "bg-red-500/20 text-red-400 border border-red-500/50" : 
+                  "bg-gradient-to-r from-neon-blue to-neon-purple text-white hover:opacity-90"
+                }`}
+              >
+                {status === "idle" && <><Send size={18} /> Send Message</>}
+                {status === "loading" && <><Loader2 size={18} className="animate-spin" /> Sending...</>}
+                {status === "success" && <><CheckCircle2 size={18} /> Message Sent!</>}
+                {status === "error" && <><AlertCircle size={18} /> Failed to send</>}
               </button>
+
+              <AnimatePresence>
+                {status === "success" && (
+                  <motion.p 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="text-center text-sm text-green-400"
+                  >
+                    Thanks! I&apos;ll get back to you soon.
+                  </motion.p>
+                )}
+              </AnimatePresence>
             </form>
           </motion.div>
         </div>

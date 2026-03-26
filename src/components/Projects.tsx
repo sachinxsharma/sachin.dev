@@ -63,28 +63,34 @@ export default function Projects() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.2, duration: 0.5 }}
-              className="glass p-8 rounded-2xl hover:shadow-[0_0_30px_rgba(0,240,255,0.3)] hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden"
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              className="glass p-8 rounded-2xl hover:shadow-[0_0_40px_rgba(0,240,255,0.2)] hover:-translate-y-2 transition-all duration-500 group relative overflow-hidden flex flex-col"
             >
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon-blue to-neon-purple opacity-0 group-hover:opacity-100 transition-opacity" />
-              <h3 className="text-2xl font-bold mb-4">{project.title}</h3>
-              <p className="text-gray-400 mb-6 min-h-[80px]">{project.description}</p>
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon-blue to-neon-purple opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute -right-10 -top-10 w-32 h-32 bg-neon-blue/5 rounded-full blur-3xl group-hover:bg-neon-blue/10 transition-colors" />
+              
+              <h3 className="text-2xl font-bold mb-4 group-hover:text-neon-blue transition-colors">{project.title}</h3>
+              <p className="text-gray-400 mb-6 flex-grow leading-relaxed">{project.description}</p>
 
               <div className="flex flex-wrap gap-2 mb-8">
                 {project.tech.map((tech, i) => (
-                  <span key={i} className="px-3 py-1 text-xs font-semibold rounded-full bg-neon-blue/10 text-neon-blue border border-neon-blue/20">
+                  <span key={i} className="px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-lg bg-white/5 text-gray-300 border border-white/10 group-hover:border-neon-blue/30 transition-colors">
                     {tech}
                   </span>
                 ))}
               </div>
 
-              <div className="flex gap-4 mt-auto">
-                <a href={project.github} className="flex items-center gap-2 text-sm hover:text-neon-blue transition-colors" target="_blank" rel="noopener noreferrer">
-                  <Github size={18} /> Code
-                </a>
-                <a href={project.live} className="flex items-center gap-2 text-sm hover:text-neon-purple transition-colors" target="_blank" rel="noopener noreferrer">
-                  <ExternalLink size={18} /> Live Demo
-                </a>
+              <div className="flex gap-6 mt-auto">
+                {project.github !== "#" && (
+                  <a href={project.github} className="flex items-center gap-2 text-sm font-semibold text-gray-400 hover:text-neon-blue transition-colors group/link" target="_blank" rel="noopener noreferrer">
+                    <Github size={18} className="group-hover/link:scale-110 transition-transform" /> Code
+                  </a>
+                )}
+                {project.live !== "#" && (
+                  <a href={project.live} className="flex items-center gap-2 text-sm font-semibold text-gray-400 hover:text-neon-purple transition-colors group/link" target="_blank" rel="noopener noreferrer">
+                    <ExternalLink size={18} className="group-hover/link:scale-110 transition-transform" /> Live
+                  </a>
+                )}
               </div>
             </motion.div>
           ))}
