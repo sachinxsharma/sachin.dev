@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import dynamic from "next/dynamic";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { Terminal } from "@/components/Terminal";
 
 const CustomCursor = dynamic(() => import("@/components/CustomCursor"), { ssr: false });
 const Chatbot = dynamic(() => import("@/components/Chatbot"), { ssr: false });
@@ -71,6 +72,7 @@ export default function RootLayout({
             {children}
           </main>
           <Chatbot />
+          <Terminal />
         </ThemeProvider>
       </body>
     </html>

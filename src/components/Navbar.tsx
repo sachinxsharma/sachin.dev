@@ -20,6 +20,7 @@ export default function Navbar() {
     { name: "Projects", href: "#projects" },
     { name: "Skills", href: "#skills" },
     { name: "Learning", href: "#learning" },
+    { name: "Terminal", href: "#terminal" },
   ];
 
   return (
@@ -39,9 +40,19 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
-            <Link key={link.name} href={link.href} className="text-sm text-slate-600 dark:text-gray-300 hover:text-neon-blue transition-colors">
-              {link.name}
-            </Link>
+            link.name === "Terminal" ? (
+              <button 
+                key={link.name} 
+                onClick={() => window.dispatchEvent(new CustomEvent("toggle-terminal"))}
+                className="text-sm text-slate-600 dark:text-gray-300 hover:text-neon-blue transition-colors"
+              >
+                {link.name}
+              </button>
+            ) : (
+              <Link key={link.name} href={link.href} className="text-sm text-slate-600 dark:text-gray-300 hover:text-neon-blue transition-colors">
+                {link.name}
+              </Link>
+            )
           ))}
           <Link
             href="#contact"
@@ -72,14 +83,27 @@ export default function Navbar() {
             className="absolute top-0 left-0 w-full h-screen bg-slate-50 dark:bg-[#030014]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 z-40 md:hidden"
           >
             {navLinks.map((link) => (
-              <Link 
-                key={link.name} 
-                href={link.href} 
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-2xl text-slate-900 dark:text-gray-300 hover:text-neon-blue transition-colors"
-              >
-                {link.name}
-              </Link>
+              link.name === "Terminal" ? (
+                <button 
+                  key={link.name} 
+                  onClick={() => {
+                    window.dispatchEvent(new CustomEvent("toggle-terminal"));
+                    setMobileMenuOpen(false);
+                  }}
+                  className="text-2xl text-slate-900 dark:text-gray-300 hover:text-neon-blue transition-colors"
+                >
+                  {link.name}
+                </button>
+              ) : (
+                <Link 
+                  key={link.name} 
+                  href={link.href} 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-2xl text-slate-900 dark:text-gray-300 hover:text-neon-blue transition-colors"
+                >
+                  {link.name}
+                </Link>
+              )
             ))}
             <Link
               href="#contact"
