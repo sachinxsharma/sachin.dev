@@ -32,14 +32,14 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold tracking-tighter z-50">
+        <Link href="/" className="text-2xl font-bold tracking-tighter z-50 text-slate-900 dark:text-white">
           Sachin<span className="text-neon-blue">.dev</span>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
-            <Link key={link.name} href={link.href} className="text-sm text-gray-300 hover:text-neon-blue transition-colors">
+            <Link key={link.name} href={link.href} className="text-sm text-slate-600 dark:text-gray-300 hover:text-neon-blue transition-colors">
               {link.name}
             </Link>
           ))}
@@ -51,13 +51,15 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile Toggle */}
-        <button 
-          className="md:hidden z-50 text-gray-300 hover:text-neon-blue transition-colors"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        {/* Mobile Controls */}
+        <div className="flex items-center gap-4 md:hidden z-50">
+          <button 
+            className="text-slate-900 dark:text-gray-300 hover:text-neon-blue transition-colors"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Nav */}
@@ -67,14 +69,14 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-0 left-0 w-full h-screen bg-[#030014]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 z-40 md:hidden"
+            className="absolute top-0 left-0 w-full h-screen bg-slate-50 dark:bg-[#030014]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 z-40 md:hidden"
           >
             {navLinks.map((link) => (
               <Link 
                 key={link.name} 
                 href={link.href} 
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-2xl text-gray-300 hover:text-neon-blue transition-colors"
+                className="text-2xl text-slate-900 dark:text-gray-300 hover:text-neon-blue transition-colors"
               >
                 {link.name}
               </Link>

@@ -2,3 +2,16 @@ node_modules
 .next
 .git
 .env*
+<<<<<<< HEAD
+=======
+build.log
+build-output.log
+*.md
+Dockerfile
+.dockerignore
+docker-compose.yml
+node_modules
+npm-debug.log
+package-lock.json
+public/ (optional, keep if needed)
+>>>>>>> a980830 (added some cool features)

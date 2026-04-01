@@ -41,10 +41,10 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
             Let&apos;s <span className="text-neon-purple">Connect</span>
           </h2>
-          <p className="text-gray-400">Ready to build the future of infrastructure together?</p>
+          <p className="text-slate-600 dark:text-gray-400">Ready to build the future of infrastructure together?</p>
         </motion.div>
 
         <div className="flex flex-col md:flex-row gap-12">
@@ -56,8 +56,8 @@ export default function Contact() {
             className="flex-1 space-y-8"
           >
             <div className="glass p-8 rounded-2xl h-full">
-              <h3 className="text-2xl font-bold mb-6">Drop a message</h3>
-              <p className="text-gray-400 mb-8">
+              <h3 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white">Drop a message</h3>
+              <p className="text-slate-600 dark:text-gray-400 mb-8">
                 Whether you have a question, a project opportunity, or just want to say hi, my inbox is always open!
               </p>
 
@@ -89,7 +89,7 @@ export default function Contact() {
           >
             <form className="glass p-8 rounded-2xl flex flex-col gap-6" onSubmit={handleSubmit}>
               <div className="flex flex-col gap-2">
-                <label htmlFor="subject" className="text-sm text-gray-400">Subject</label>
+                <label htmlFor="subject" className="text-sm text-slate-500 dark:text-gray-400">Subject</label>
                 <input 
                   type="text" 
                   id="subject" 
@@ -97,12 +97,12 @@ export default function Contact() {
                   value={formData.subject}
                   onChange={(e) => setFormData({...formData, subject: e.target.value})}
                   required
-                  className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all" 
+                  className="w-full bg-slate-100 dark:bg-black/40 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all" 
                   placeholder="Project Opportunity" 
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label htmlFor="body" className="text-sm text-gray-400">Message</label>
+                <label htmlFor="body" className="text-sm text-slate-500 dark:text-gray-400">Message</label>
                 <textarea 
                   id="body" 
                   name="body" 
@@ -110,7 +110,7 @@ export default function Contact() {
                   value={formData.body}
                   onChange={(e) => setFormData({...formData, body: e.target.value})}
                   required
-                  className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all" 
+                  className="w-full bg-slate-100 dark:bg-black/40 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-neon-purple focus:ring-1 focus:ring-neon-purple transition-all" 
                   placeholder="How can I help you?"
                 ></textarea>
               </div>

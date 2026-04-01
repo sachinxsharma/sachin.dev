@@ -34,7 +34,7 @@ export default function Skills() {
   ];
 
   return (
-    <section id="skills" className="py-20 relative z-10 bg-black/50">
+    <section id="skills" className="py-20 relative z-10 bg-slate-50/50 dark:bg-black/50">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -43,10 +43,10 @@ export default function Skills() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
             Tech <span className="text-neon-blue">Arsenal</span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto">
             My proficiency in various technologies and what I am currently focusing on.
           </p>
         </motion.div>
@@ -62,10 +62,10 @@ export default function Skills() {
               className="glass p-6 rounded-2xl hover:border-neon-blue/50 transition-colors"
             >
               {cat.icon}
-              <h3 className="text-xl font-bold mb-4">{cat.title}</h3>
+              <h3 className="text-xl font-bold mb-4 text-slate-900 dark:text-white">{cat.title}</h3>
               <ul className="space-y-2">
                 {cat.items.map((item, i) => (
-                  <li key={i} className="text-gray-300 flex items-center gap-2">
+                  <li key={i} className="text-slate-600 dark:text-gray-300 flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-neon-blue" />
                     {item}
                   </li>
@@ -86,15 +86,15 @@ export default function Skills() {
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-neon-purple/10 rounded-full blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2" />
 
-          <h3 className="text-3xl font-bold mb-8 flex items-center gap-4">
+          <h3 className="text-3xl font-bold mb-8 flex items-center gap-4 text-slate-900 dark:text-white">
             <Cpu className="text-neon-purple" size={36} />
             Currently Learning
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {currentlyLearning.map((topic, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 p-5 rounded-xl border-l-4 border-l-neon-purple hover:bg-white/10 transition-colors">
-                <p className="font-semibold text-lg">{topic}</p>
+              <div key={i} className="bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 p-5 rounded-xl border-l-4 border-l-neon-purple hover:bg-slate-200 dark:hover:bg-white/10 transition-colors">
+                <p className="font-semibold text-lg text-slate-900 dark:text-white">{topic}</p>
               </div>
             ))}
           </div>

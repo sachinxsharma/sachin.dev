@@ -27,16 +27,18 @@ export default function ThreeDScene() {
         posArray[i] = (Math.random() - 0.5) * 20;
     }
     starsGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    const starsMaterial = new THREE.PointsMaterial({ size: 0.005, color: 0xffffff, transparent: true, opacity: 0.8 });
+    const starsColor = 0xffffff;
+    const starsMaterial = new THREE.PointsMaterial({ size: 0.005, color: starsColor, transparent: true, opacity: 0.8 });
     const starsMesh = new THREE.Points(starsGeometry, starsMaterial);
     scene.add(starsMesh);
 
     // Globe
     const geometry = new THREE.SphereGeometry(2.5, 64, 64);
+    const globeColor = 0x00f0ff;
     const material = new THREE.MeshStandardMaterial({ 
-      color: 0x00f0ff, 
+      color: globeColor, 
       wireframe: true, 
-      emissive: 0x00f0ff, 
+      emissive: globeColor, 
       emissiveIntensity: 0.8,
       transparent: true,
       opacity: 0.4

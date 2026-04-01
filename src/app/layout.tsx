@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import dynamic from "next/dynamic";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const CustomCursor = dynamic(() => import("@/components/CustomCursor"), { ssr: false });
 const Chatbot = dynamic(() => import("@/components/Chatbot"), { ssr: false });
@@ -53,16 +54,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <CustomCursor />
-        <Navbar />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Chatbot />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          forcedTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          <CustomCursor />
+          <Navbar />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <Chatbot />
+        </ThemeProvider>
       </body>
     </html>
   );
